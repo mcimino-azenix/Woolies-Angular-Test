@@ -1,0 +1,18 @@
+<ng-container *ngIf="type === 'folder' || type === 'file'">
+  <div class="container">
+    <div class="block">
+      <img [src]="'assets/folder-open-regular.svg'" alt="SVG Image" height="20" width="20">
+      <input [(ngModel)]="name" type="text">
+      <button class="create" (click)="createItem()">✓</button>
+      <button class="cancel" (click)="cancelItem()">x</button>
+    </div>
+  </div>
+</ng-container>
+<ng-container *ngIf="type === 'unset' || type === undefined">
+  <div class="container">
+    <div class="block">
+      <button (click)="setType('folder')">Folder</button>
+      <button (click)="setType('file')">File</button>
+    </div>
+  </div>
+</ng-container>

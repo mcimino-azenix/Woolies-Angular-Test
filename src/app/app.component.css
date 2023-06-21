@@ -1,0 +1,29 @@
+.header {
+  background-color: black;
+  color: white;
+  font-size: 24px;
+  padding: 25px;
+  width: 100%;
+  text-align: center;
+}
+
+.header-text {
+  display: inline-block;
+  width: 100%;
+}
+
+.add-folder-button {
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  margin-top: 20px;
+  font-size: 16px;
+}
+
+.container {
+  display: inline-flex;
+  padding: 8px;
+  border: 1px solid black;
+}

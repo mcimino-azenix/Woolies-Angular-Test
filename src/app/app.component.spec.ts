@@ -1,27 +1,40 @@
-import { TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { NodeModel } from './models/node.model';
+import { NodeService } from './node.service';
+import {Observable, of, Subscription} from "rxjs";
 
 describe('AppComponent', () => {
-  beforeEach(() => TestBed.configureTestingModule({
-    declarations: [AppComponent]
-  }));
+  let component: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
+  let nodeService: NodeService;
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [AppComponent],
+      providers: [NodeService]
+    }).compileComponents();
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
+    nodeService = TestBed.inject(NodeService);
   });
 
-  it(`should have as title 'FolderStructureMaker'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('FolderStructureMaker');
+  it('should call addNode method of NodeService', () => {
+    spyOn(nodeService, 'addNode');
+
+    component.addFolderToRoot();
+
+    expect(nodeService.addNode).toHaveBeenCalled();
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('FolderStructureMaker app is running!');
+  it('should set nodeModels property with the value from NodeService nodes observable on ngOnInit', () => {
+    const nodes: NodeModel[] = [{ id: '1', name: 'Test Node', type: 'folder' }];
+    const nodesObservable: Observable<NodeModel[]> = of(nodes);
+
+    Object.defineProperty(nodeService, 'nodes', { value: nodesObservable });
+
+    component.ngOnInit();
+
+    expect(component.nodeModels).toEqual(nodes);
   });
 });

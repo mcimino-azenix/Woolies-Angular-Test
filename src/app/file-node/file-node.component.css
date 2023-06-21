@@ -1,0 +1,32 @@
+.container {
+  margin-top: 10px;
+  display: block;
+}
+
+.block {
+  display: inline-flex;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  padding: 5px 5px 5px 5px;
+  gap: 3px;
+}
+
+.block:hover {
+  border: 1px solid black;
+}
+
+.block:hover button {
+  visibility: visible;
+}
+
+button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  margin-left: 2px;
+  color: white;
+  border: 0;
+  border-radius: 50%;
+  visibility: hidden;
+}

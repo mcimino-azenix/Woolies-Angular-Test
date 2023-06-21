@@ -1,0 +1,27 @@
+.container {
+  margin-top: 10px;
+  display: block;
+}
+
+.block {
+  display: inline-flex;
+  border: 1px solid black;
+  border-radius: 3px;
+  padding: 5px 5px 5px 5px;
+  gap: 3px;
+}
+
+button {
+  border: 1px solid black;
+  border-radius: 3px;
+}
+
+.create {
+  background-color: black;
+  color: white;
+}
+
+.cancel {
+  background-color: white;
+  color: black;
+}

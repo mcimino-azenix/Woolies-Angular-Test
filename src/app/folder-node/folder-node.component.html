@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="block">
+    <img [src]="'assets/folder-open-regular.svg'" alt="SVG Image" height="20" width="20">
+    <div>{{ node.name }}</div>
+    <button (click)="addNode()">+</button>
+    <button (click)="removeFolder()">
+      <img [src]="'assets/rubbish-bin.svg'" alt="SVG Image" height="10" width="10">
+    </button>
+  </div>
+</div>
+
+<div class="indented" *ngIf="node.children && node.children.length > 0">
+  <ng-container *ngFor="let childNode of node.children">
+    <ng-container [ngSwitch]="childNode.type">
+      <app-folder-node *ngSwitchCase="'folder'" [node]="childNode"></app-folder-node>
+      <app-file-node *ngSwitchCase="'file'" [node]="childNode"></app-file-node>
+      <app-new-node *ngSwitchDefault [nodeModel]="childNode" [type]="'unset'"></app-new-node>
+    </ng-container>
+  </ng-container>
+</div>
